@@ -1,0 +1,225 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>
+        Registration Form
+
+    </title>
+    <style></style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block">
+            <h1 class="text-success text-center">Please fill in this form to Register </h1>
+            <form method="POST" onsubmit="return validation()" class="bg-light" id="form1">
+
+                <div class="form-group">
+                    <label><b>UserName</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" class="form-control" id="uname">
+                    <span id="unamee" class="text-danger font-weight-bold"></span>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" class="form-control" name="email" id="email">
+                    <span id="emaill" class="text-danger font-weight-bold"></span>
+                </div>
+                <div class="form-group">
+                    <label><b>Bithdate</b></label>
+                    <input type="date" placeholder="Enter Birth Date" class="form-control" name="bdate" id="bdate">
+                    <span id="bdatee" class="text-danger font-weight-bold"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="address"><b>City</b></label>
+                    <select id="city" name="city" class="form-control">
+                      <option value="mumbai">Mumbai</option>
+                      <option value="Kolkata">Kolkata</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="New Delhi">New Delhi</option>
+                 
+                   </select>
+                    <span id="cityy" class="text-danger font-weight-bold"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="address"><b>Programming Languages Known</b></label>
+                    <div class="form-inline">
+                        <label><input type="checkbox" name="langu[]" value="C"> C</label>
+                        <label><input type="checkbox" name="langu[]" value="C++"> C++</label>
+
+                        <label><input type="checkbox" name="langu[]" value="Java"> Java</label>
+                        <label><input type="checkbox" name="langu[]" value="Python"> Python</label>
+
+                        <label><input type="checkbox" name="langu[]" value="JavaScript">JavaScript</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" class="form-control" name="password" id="password" onkeyup="passCheck(this.value)">
+                    <span id="passwordd" class="text-danger font-weight-bold"></span>
+                    <p>
+                        <li>
+
+                            <label class="password-check">8 characters</label></li>
+                        <li><label class="password-check">1 lowercase character</label></li>
+                        <li><label class="password-check">1 Uppercase character</label></li>
+                        <li> <label class="password-check">1 numerical character</label></li>
+                        <li> <label class="password-check">1 special characters</label></li>
+                    </p>
+                </div>
+                <script>
+                    function passCheck(data) {
+                        var passClass = document.getElementsByClassName('password-check');
+                        const lowerCase = new RegExp('(?=.*[a-z])');
+                        const upperCase = new RegExp('(?=.*[A-Z])');
+                        const number = new RegExp('(?=.*[0-9])');
+                        const specialChar = new RegExp('(?=.*[!@#$%^&*])');
+                        const eightchar = new RegExp('(?=.{8,})');
+
+                        if (eightchar.test(data)) {
+                            passClass[0].style.color = "green";
+                        } else {
+                            passClass[0].style.color = "grey";
+                        }
+                        if (lowerCase.test(data)) {
+                            passClass[1].style.color = "green";
+                        } else {
+                            passClass[1].style.color = "grey";
+                        }
+                        if (upperCase.test(data)) {
+                            passClass[2].style.color = "green";
+                        } else {
+                            passClass[2].style.color = "grey";
+                        }
+                        if (number.test(data)) {
+                            passClass[3].style.color = "green";
+                        } else {
+                            passClass[3].style.color = "grey";
+                        }
+                        if (specialChar.test(data)) {
+                            passClass[4].style.color = "green";
+                        } else {
+                            passClass[4].style.color = "grey";
+                        }
+                    }
+                </script>
+
+                <input type="submit" name="submit" value="Register" class="registerbtn">
+        </div>
+
+        </form>
+        <span id="display" class="text-danger font-weight-bold"></span>
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function validation() {
+            var uname = document.getElementById('uname').value;
+            var email = document.getElementById('email').value;
+            var bdate = document.getElementById('bdate').value;
+            var city = document.getElementById('city').value;
+            var password = document.getElementById('password').value;
+            var langu = [];
+            var checkboxes = document.getElementsByName("langu[]");
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    // Populate hobbies array with selected values
+                    langu.push(checkboxes[i].value);
+                }
+            }
+
+
+
+            if (uname == "") {
+                document.getElementById('unamee').innerHTML = "Please fill the username field";
+                return false;
+            }
+            if ((uname.length <= 2) || (uname.length > 20)) {
+                document.getElementById('unamee').innerHTML = " user lenght must be between 2 and 20";
+                return false;
+            }
+
+            if (!isNaN(uname)) {
+                document.getElementById('unamee').innerHTML = " only characters allowed"
+                return false;
+            }
+
+            if (email == "") {
+                document.getElementById('emaill').innerHTML = "Please fill the email field";
+                return false;
+            }
+            if (email.indexOf('@') <= 0) {
+                document.getElementById('emaill').innerHTML = "Invalid Mail id"
+                return false;
+            }
+            if ((email.charAt(email.length - 4) != '.') && (email.charAt(email.length - 3 != '.'))) {
+                document.getElementById('emaill').innerHTML = "Invalid Mail id"
+                return false;
+            }
+
+
+            if (bdate == "") {
+                document.getElementById('bdatee').innerHTML = "Please fill the Birthdate field";
+                return false;
+            }
+
+            if (city == "") {
+                document.getElementById('cityy').innerHTML = "Please fill the city field";
+                return false;
+            }
+
+            if (password == "") {
+                document.getElementById('passwordd').innerHTML = "Please fill the Password field";
+                return false;
+            }
+
+
+            if ((unamee || emaill || passwordd || bdatee || cityy) == true) {
+                return false;
+            } else {
+                // Creating a string from input data for preview
+                var dataPreview = "You've entered the following details: \n" +
+                    "Username: " + uname + "\n" +
+                    "Email Address: " + email + "\n" +
+                    "BirthDater: " + bdate + "\n" +
+                    "City " + city + "\n" +
+                    "Password: " + password + "\n";
+                if (langu.length) {
+                    dataPreview += "langu: " + langu.join(", ");
+                }
+                // Display input data in a dialog box before submitting the form
+                alert(dataPreview);
+            }
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
